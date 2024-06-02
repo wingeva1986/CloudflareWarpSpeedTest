@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"math"
 	"net/http"
 	"os/exec"
 )
@@ -74,7 +75,7 @@ func GetCountryBatch(ips ...string) (country_map map[string]string, err error) {
 	for i := 0; i < size; i += MaxQueryCount {
 		var country_maps []map[string]string
 
-		_ips := ips[i:min(size, i+MaxQueryCount)]
+		_ips := ips[i:math.Min(size, i+MaxQueryCount)]
 		for _, _ip := range _ips {
 			country_map[_ip] = ""
 		}
