@@ -75,7 +75,7 @@ func GetCountryBatch(ips ...string) (country_map map[string]string, err error) {
 	for i := 0; i < size; i += MaxQueryCount {
 		var country_maps []map[string]string
 
-		_ips := ips[i:math.Min(size, i+MaxQueryCount)]
+		_ips := ips[i:int(math.Min(float64(size), float64(i + MaxQueryCount)))]
 		for _, _ip := range _ips {
 			country_map[_ip] = ""
 		}

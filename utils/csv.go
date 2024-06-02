@@ -108,7 +108,7 @@ func ExportAddresses(data []CloudflareIPData) {
 	size := len(data)
 
 	log.Println(convertToString(data))
-	for _, _data := range data[0:math.Min(PrintNum, size)] {
+	for _, _data := range data[0:int(math.Min(float64(size), float64(i + MaxQueryCount)))] {
 		ip := _data.IP.IP.String()
 		country := _data.getCountry()
 		record := fmt.Sprintf("%s:%d#%s", ip, 2052, country)
